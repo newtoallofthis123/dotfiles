@@ -1,0 +1,1 @@
+/home/noobscience/.asdf/completions/asdf.fish
