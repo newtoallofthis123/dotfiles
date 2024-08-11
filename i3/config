@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:CommitMono Nerd Font 14
+font pango:JetbrainsMono Nerd Font 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -22,7 +22,6 @@ font pango:CommitMono Nerd Font 14
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -34,6 +33,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+# exec --no-startup-id volumeicon
+# exec --no-startup-id $HOME/.bin/greenclip daemon
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -41,14 +42,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/scripts/brightness.sh +5
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/scripts/brightness.sh -5
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
+# Use Mouse+$mod to drag floating windows to their wanted position floating_modifier $mod move tiling windows via drag & drop by left-clicking into the title bar, or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
 # start a terminal
@@ -58,14 +55,14 @@ bindsym $mod+b exec firefox
 bindsym $mod+e exec thunar
 bindsym $mod+g exec flatpak run com.discordapp.Discord
 bindsym $mod+p exec pavucontrol
-
-# kill focused window
+# kill focused window 
 bindsym $mod+Shift+q kill
-
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window
+bindsym $mod+Shift+v exec --no-startup-id rofi -modi "clipboard:$HOME/.bin/greenclip print" -show clipboard -run-command '{cmd}'
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -122,10 +119,13 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+set $i3lockwall sh ~/.config/scripts/lock.sh
+bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
+set $terms "1:  "
+set $web "2: 󰈹 "
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
@@ -136,9 +136,9 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
+bindsym $mod+1 workspace $terms
+bindsym $mod+2 workspace $web
+bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
@@ -147,10 +147,12 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
+assign [class="firefox" instance="Navigator"] → $web
+
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+1 move container to workspace $terms
+bindsym $mod+Shift+2 move container to workspace $web
+bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6
@@ -159,12 +161,16 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -193,33 +199,118 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# shutdown / restart / suspend...
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
+
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $i3lockwall, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+BackSpace mode "$mode_system"
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# bar {
+#     status_command i3blocks -c /home/$USER/.config/i3blocks/i3blocks.conf
+#     i3bar_command i3bar
+# }
+#
+
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f849c
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
 bar {
-    status_command i3blocks -c /home/$USER/.config/i3blocks/i3blocks.conf
+    font pango:Inconsolata 16
+    position bottom
+    # tray_output none
+    status_command bumblebee-status -m \
+        weather cpu memory sensors2 battery-upower brightness date time pulseout pulsein \
+        -p sensors2.chip="amdgpu-pci-0400" sensors2.showcpu="false" sensors2.showfan="false" root.path=/ time.format="%H:%M" date.format="%a, %b %d %Y" \
+        memory.usedonly="true" weather.showcity="false" playerctl.format="{{title}}" playerctl.layout="playerctl.song" playerctl.hide="true" \
+        -t iceberg-rainbow
     i3bar_command i3bar
+      colors {
+        background         $base
+        statusline         $text
+        focused_statusline $text
+        focused_separator  $base
+        focused_workspace  $base $base $mauve
+        active_workspace   $base $base $blue
+        inactive_workspace $base $base $surface1
+        urgent_workspace   $base $base $red
+        binding_mode       $base $base $surface1
+      }
 }
 
 # My stuff
 
 smart_borders on
-exec ~/init_docker.sh
+# exec ~/init_docker.sh
 
-client.focused          #212121 #1e1e2e #ffffff #101010   #1e1e2e
-client.focused_inactive #333333 #212121 #ffffff #484e50   #5f676a
-client.unfocused        #333333 #212121 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# client.focused          #212121 #1e1e2e #ffffff #101010   #1e1e2e
+# client.focused_inactive #333333 #212121 #ffffff #484e50   #5f676a
+# client.unfocused        #333333 #212121 #888888 #292d2e   #222222
+# client.urgent           #2f343a #900000 #ffffff #900000   #900000
+# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 #
 # client.background       #ffffff
-# exec_always feh --bg-scale /home/noobscience/Pictures/aesthetic-wallpapers/images/gruvbox_room.png
-exec_always feh --bg-scale /home/noobscience/Pictures/rose-pine/pointoverhead.jpg
+
+client.focused           $base $mauve $base  $base $base
+client.focused_inactive  $base $base $text  $base $base
+client.unfocused         $base $base $text  $base $base
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
+
+exec_always feh --bg-scale /home/noobscience/Pictures/walls/anime/a_woman_wearing_a_helmet.jpg
+# exec_always feh --bg-scale /home/noobscience/Pictures/walls/gruvbox/a_cartoon_of_a_person_sitting_on_a_wolf.png
 exec_always picom -f
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+for_window [all] title_window_icon padding 3px
+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # for_window [class="^.*"] border pixel 0
+
+bindsym $mod+Shift+S exec --no-startup-id screenkey -f "JetbrainsMono Nerd Font" -s small --opacity 0.7
+bindsym $mod+Ctrl+Shift+S exec --no-startup-id pkill screenkey
+
+# gaps inner 2
+# gaps outer 2

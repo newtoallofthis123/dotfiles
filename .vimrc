@@ -40,7 +40,7 @@ Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'flazz/vim-colorschemes'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 call plug#end()
 
 let g:highlightedyank_highlight_duration = 200

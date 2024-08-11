@@ -6,7 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family    Inconsolata Nerd Font 
+font_family     GeistMono Nerd Font 
 # font_family    CommitMono 
 # bold_font        auto
 # italic_font      auto
@@ -24,7 +24,7 @@ font_family    Inconsolata Nerd Font
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 14.0
+font_size 16.0
 
 #: Font size (in pts)
 
@@ -274,7 +274,7 @@ url_style single
 #: The color and style for highlighting URLs on mouse-over. url_style
 #: can be one of: none, single, double, curly
 
-open_url_with firefox
+open_url_with xdg-open
 
 #: The program with which to open URLs that are clicked on. The
 #: special value default means to use the operating system's default
@@ -536,7 +536,7 @@ initial_window_height 400
 #: that setting a non-zero window margin overrides this and causes all
 #: borders to be drawn.
 
-window_margin_width 2
+window_margin_width 1
 
 #: The window margin (in pts) (blank area outside the border). A
 #: single value sets all four sides. Two values set the vertical and
@@ -552,7 +552,7 @@ window_margin_width 2
 #: values set top, horizontal and bottom. Four values set top, right,
 #: bottom and left.
 
-window_padding_width 2
+window_padding_width 1
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
@@ -586,7 +586,7 @@ window_padding_width 2
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-hide_window_decorations no 
+hide_window_decorations no
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only can be used to only hide the titlebar.
@@ -733,7 +733,7 @@ tab_title_template "{index}: {title}"
 # background #363537
 # foreground #f7f1ff
 
-background_opacity 1
+background_opacity 0.95
 
 #: The opacity of the background. A number between 0 and 1, where 1 is
 #: opaque and 0 is fully transparent.  This will only work if
@@ -865,7 +865,7 @@ background_tint 0.8
 
 #: Advanced {{{
 
-shell fish --login 
+shell /usr/bin/zsh --login 
 
 #: The shell program to execute. The default value of . means to use
 #: whatever shell is set as the default shell for the current user.
@@ -986,9 +986,8 @@ allow_hyperlinks yes
 #: }}}
 
 #: OS specific tweaks {{{
-wayland_titlebar_color #1A1B26
-# wayland_titlebar_color #000000
-#: 1D2021
+# wayland_titlebar_color ##FAF4ED
+# wayland_titlebar_color #1E1E2E
 
 #: Change the color of the kitty window's titlebar on Wayland systems
 #: with client side window decorations such as GNOME. A value of
@@ -1064,7 +1063,7 @@ wayland_titlebar_color #1A1B26
 #: mouse cursor invisible on dual GPU machines. Changing this setting
 #: by reloading the config is not supported.
 
-# linux_display_server auto
+linux_display_server auto
 
 #: Choose between Wayland and X11 backends. By default, an appropriate
 #: backend based on the system state is chosen automatically. Set it
@@ -1205,7 +1204,7 @@ map kitty_mod+down      scroll_line_down
 
 #: }}}
 
-#: Wiindow management {{{
+#: Window management {{{
 
 map kitty_mod+enter new_window
 
@@ -1259,7 +1258,7 @@ map kitty_mod+[ previous_window
 # map kitty_mod+0 tenth_window
 #: }}}
 
-#: Tabi management {{{
+#: Tab management {{{
 
 map kitty_mod+right next_tab
 map kitty_mod+left  previous_tab
@@ -1461,6 +1460,6 @@ map kitty_mod+a>l    set_background_opacity -0.1
 
 
 # BEGIN_KITTY_THEME
-# Alabaster Dark
+# Monokai Soda
 include current-theme.conf
 # END_KITTY_THEME
