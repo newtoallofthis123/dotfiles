@@ -6,7 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family     GeistMono Nerd Font 
+font_family     JetbrainsMono Nerd Font 
 # font_family    CommitMono 
 # bold_font        auto
 # italic_font      auto
@@ -733,7 +733,7 @@ tab_title_template "{index}: {title}"
 # background #363537
 # foreground #f7f1ff
 
-background_opacity 0.95
+background_opacity 0.85
 
 #: The opacity of the background. A number between 0 and 1, where 1 is
 #: opaque and 0 is fully transparent.  This will only work if
@@ -1460,6 +1460,6 @@ map kitty_mod+a>l    set_background_opacity -0.1
 
 
 # BEGIN_KITTY_THEME
-# Monokai Soda
+# Gruvbox Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
