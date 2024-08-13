@@ -21,21 +21,24 @@ font pango:JetbrainsMono Nerd Font 14
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id dex --autostart --environment sway
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- swaylock --nofork
+exec swaync
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 # exec --no-startup-id volumeicon
 # exec --no-startup-id $HOME/.bin/greenclip daemon
-exec --no-startup-id $HOME/contrib/swhkd/target/release/swhks && doas $HOME/contrib/swhkd/target/release/swhkd
+# exec --no-startup-id $HOME/contrib/swhkd/target/release/swhks && doas $HOME/contrib/swhkd/target/release/swhkd
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -47,13 +50,13 @@ bindsym XF86MonBrightnessUp exec --no-startup-id doas ~/.config/scripts/brightne
 bindsym XF86MonBrightnessDown exec --no-startup-id doas ~/.config/scripts/brightness.sh -5
 
 # Use Mouse+$mod to drag floating windows to their wanted position floating_modifier $mod move tiling windows via drag & drop by left-clicking into the title bar, or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+tiling_drag modifier 
 
 # start a terminal
 bindsym $mod+Return exec kitty
 
 bindsym $mod+b exec firefox
-bindsym $mod+e exec thunar
+bindsym $mod+e exec nautilus
 bindsym $mod+g exec flatpak run com.discordapp.Discord
 bindsym $mod+p exec pavucontrol
 # kill focused window 
@@ -63,7 +66,8 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
 bindsym $mod+Shift+d exec --no-startup-id rofi -show window
-bindsym $mod+Shift+v exec --no-startup-id rofi -modi "clipboard:$HOME/.bin/greenclip print" -show clipboard -run-command '{cmd}'
+for_window [app_id="copyq"] floating enable, sticky enable, resize set height 600px width 550px, move position cursor, move down 330
+bindsym $mod+Shift+v exec copyq toggle
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -254,15 +258,16 @@ set $mantle #181825
 set $crust #11111b
 
 bar {
-    font pango:Inconsolata 14
+    font pango:Inconsolata 16
     position bottom
-    # tray_output none
+    # tray_output swaybar
     status_command bumblebee-status -m \
         spotify cpu memory sensors2 battery-upower brightness date time pulseout \
         -p sensors2.chip="amdgpu-pci-0400" sensors2.showcpu="false" sensors2.showfan="false" root.path=/ time.format="%H:%M" date.format="%a, %b %d" \
         memory.usedonly="true" weather.showcity="false" spotify.concise_controls="true" spotify.layout="spotify.song" playerctl.format="{{artist}}" playerctl.layout="playerctl.song,playerctl.pause" playerctl.hide="true" title.max="45" \
-        -t iceberg-dark-powerline
-    i3bar_command i3bar
+        -t iceberg-rainbow
+    swaybar_command waybar
+    # i3bar_command i3bar
       colors {
         background         $base
         statusline         $text
@@ -296,22 +301,34 @@ client.urgent            $peach    $base $peach $red  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
-exec_always feh --bg-scale /home/noobscience/Pictures/walls/anime/a_cartoon_of_a_girl_standing_in_a_doorway.jpg
+input "type:touchpad" {
+    tap enabled         # enables click-on-tap
+    tap_button_map lrm  # tap with 1 finger = left click, 2 fingers = right click, 3 fingers = middle click
+    dwt enabled         # disable (touchpad) while typing
+    dwtp enabled        # disable (touchpad) while track pointing
+    natural_scroll enabled
+}
+
+exec_always swaybg -i /home/noobscience/Pictures/walls/anime/a_cartoon_of_a_girl_standing_in_a_doorway.jpg
 # exec_always feh --bg-scale /home/noobscience/Pictures/rose-pine/moon.jpg
-exec_always picom -f
+# exec_always picom -f
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-for_window [all] title_window_icon padding 3px
+# for_window [all] title_window_icon padding 3px
 
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] border pixel 4
 
 bindsym $mod+Shift+S exec --no-startup-id screenkey -f "JetbrainsMono Nerd Font" -s small --opacity 0.7
 bindsym $mod+Ctrl+Shift+S exec --no-startup-id pkill screenkey
 
-# gaps inner 5
-# gaps outer 4
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
+smart_gaps on
+gaps outer 5
+gaps inner 5
+exec swaymsg gaps inner all set 5
