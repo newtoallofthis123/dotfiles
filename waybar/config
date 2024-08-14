@@ -1,72 +1,154 @@
 {
-	"layer": "top",
-	"modules-left": ["custom/launcher","cpu", "temperature","memory","sway/workspaces"],
-	"modules-center": ["sway/window"],
-	"modules-right": ["backlight","pulseaudio","clock", "battery", "tray", "custom/notification" , "custom/power"],
-	
-	"pulseaudio": {
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon} {volume}%",
-		"format-muted": "{icon} {volume}%",
-		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
-		"format-icons": {
-			"default": ["", "", ""]
-		}
+	// "layer": "top", // Waybar at top layer
+	// "position": "bottom", // Waybar position (top|bottom|left|right)
+	// "height": 14, // Waybar height (to be removed for auto height)
+	// "width": 1280, // Waybar width
+
+	// Choose the order of the modules
+	"modules-left": ["custom/launcher", "sway/workspaces", "sway/mode"],
+	// "modules-center": ["sway/window"],
+	"modules-right": ["custom/media", "temperature", "cpu", "memory", "clock", "network", "backlight", "pulseaudio", "battery", "tray", "custom/notification" , "custom/power"],
+
+	"sway/mode": {
+		"format": "{}"
+	},
+	"custom/disk_home": {
+		"format": "🏠 {} ",
+		"interval": 30,
+		"exec": "df -h --output=avail $HOME | tail -1 | tr -d ' '"
+	},
+	"custom/disk_root": {
+		"format": "💽 {} ",
+		"interval": 30,
+		"exec": "df -h --output=avail / | tail -1 | tr -d ' '"
+	},
+	"temperature": {
+		// "thermal-zone": 2,
+		"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"critical-threshold": 80,
+		// "format-critical": "{temperatureC}°C {icon}",
+		"format": "<span color='#e88939'>{icon}</span> {temperatureC}°C",
+		"format-icons": [""]
+	},
+	"cpu": {
+        "interval": 15,
+        "format": "🏭 {usage}%",
+        "on-click": "gnome-system-monitor",
+	},
+	"memory": {
+		"format": "💾 {used:0.1f}G"
 	},
 	"network": {
-		"tooltip": false,
-		"format-wifi": "  {essid}",
-		"format-ethernet": ""
+		"format-wifi": "<span color='#589df6'></span> <span color='gray'>{essid}</span>",
+		"format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+		"format-linked": "{ifname} (No IP) ",
+		"format-disconnected": "Disconnected ⚠",
+		"format-alt": "{ifname}: {ipaddr}/{cidr}",
+		"interval": 5
 	},
 	"backlight": {
-		"tooltip": false,
-		"format": " {}%",
-		"interval":1,
+		// "device": "acpi_video1",
+		"format": "{icon} {percent}% ",
+		"format-icons": ["🔅", "🔆"]
 	},
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon}  {capacity}% -{time}",
-        "format-charging": " {capacity}% +{time}",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
-	"tray":{
-		"icon-size":18,
+	"pulseaudio": {
+		// "scroll-step": 1, // %, can be a float
+		"format": "{icon} {volume}% {format_source}",
+		"format-muted": "🔇 {volume}% {format_source}",
+		"format-bluetooth": "{icon} {volume}% {format_source}",
+		"format-bluetooth-muted": "🔇 {format_source}",
+
+		"format-source": " {volume}%",
+		"format-source-muted": " ",
+
+		"format-icons": {
+			"headphones": "",
+			"handsfree": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["🔈", "🔉", "🔊"]
+		},
+		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+	},
+	"clock": {
+		"interval": 1,
+		"format": "⏰ {:%H:%M:%S}",
+		"tooltip-format": "{:%Y-%m-%d | %H:%M:%S}",
+        "on-click": "gnome-calendar"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 20,
+			"critical": 10
+		},
+		"format": "<span color='#e88939'>{icon}</span> {capacity}% ({time})",
+		"format-charging": "<span color='#e88939'> </span> {capacity}%",
+		"format-plugged":  "<span color='#e88939'>{icon} </span> {capacity}% ({time})",
+		// "format-good": "", // An empty format will hide the module
+		// "format-full": "",
+		"format-icons": ["", "", "", "", ""]
+	},
+	"battery#bat2": {
+		"bat": "BAT2"
+	},
+	"idle_inhibitor": {
+		"format": "<span color='#589df6'>{icon}</span>",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		},
+		"on-click-right": "swaylock -eFfki ~/.config/lockscreen-origin.png"
+	},
+	"tray": {
+		"icon-size": 21,
 		"spacing": 10
 	},
-    "clock": {
-        "format": "{: %I:%M %p @ %d/%m/%Y}"
+    "custom/media": {
+        "format": "{icon} {} ",
+        "return-type": "json",
+        //"format-icons": {
+          //  "spotify": " ",
+            //"default": "🎜"
+        //},
+        "escape": true,
+        "on-click": "playerctl play-pause",
+        //"exec": "$HOME/.config/scripts/mediaplayer.py" 
+        "exec": "$HOME/.config/scripts/mediaplayer.py --player spotify" // Filter player based on name
     },
-    "cpu": {
-        "interval": 15,
-        "format": " {}%",
-        "max-length": 10,
-        "on-click": "gnome-system-monitor"
-    },
-    "memory": {
-        "interval": 30,
-        "format": " {used}GB",
-        "max-length": 10,
-        "on-click": "gnome-system-monitor"
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": [""]
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "custom/launcher":{
-        "format": "󰕈 Noob's",
-        "on-click": "rofi -show drun",
-        "on-click-right": "killall rofi"
+        "format": "󰕈 Noob's ",
+        "on-click": "wofi --show drun",
+        "on-click-right": "killall wofi"
     },
     "custom/power":{
         "format": " ",
@@ -74,7 +156,7 @@
     },
    "custom/notification": {
     "tooltip": false,
-    "format": "{icon}",
+    "format": "{icon} ",
     "format-icons": {
       "notification": "<span foreground='red'><sup></sup></span>",
       "none": "",
@@ -92,4 +174,5 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
+
 }
