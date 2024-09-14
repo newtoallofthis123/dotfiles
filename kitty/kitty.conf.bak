@@ -6,7 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family     JetbrainsMono Nerd Font 
+font_family     GeistMono Nerd Font 
 # font_family    CommitMono 
 # bold_font        auto
 # italic_font      auto
@@ -644,7 +644,7 @@ tab_bar_edge top
 #: the second number is the margin between the tab bar and the
 #: contents of the current tab.
 
-tab_bar_style powerline
+tab_bar_style separator
 
 #: The tab bar style, can be one of: fade, separator, powerline, or
 #: hidden. In the fade style, each tab's edges fade into the
@@ -733,7 +733,7 @@ tab_title_template "{index}: {title}"
 # background #363537
 # foreground #f7f1ff
 
-background_opacity 0.90
+background_opacity 0.95
 
 #: The opacity of the background. A number between 0 and 1, where 1 is
 #: opaque and 0 is fully transparent.  This will only work if
@@ -767,7 +767,7 @@ background_image_linear yes
 #: When background image is scaled, whether linear interpolation
 #: should be used.
 
-dynamic_background_opacity no
+dynamic_background_opacity yes
 
 #: Allow changing of the background_opacity dynamically, using either
 #: keyboard shortcuts (increase_background_opacity and
@@ -865,7 +865,7 @@ background_tint 0.8
 
 #: Advanced {{{
 
-shell /usr/bin/zsh --login 
+shell /usr/bin/fish --login 
 
 #: The shell program to execute. The default value of . means to use
 #: whatever shell is set as the default shell for the current user.
@@ -987,7 +987,7 @@ allow_hyperlinks yes
 
 #: OS specific tweaks {{{
 # wayland_titlebar_color ##FAF4ED
-# wayland_titlebar_color #1E1E2E
+# wayland_titlebar_color #1D2021 
 
 #: Change the color of the kitty window's titlebar on Wayland systems
 #: with client side window decorations such as GNOME. A value of
@@ -1063,7 +1063,7 @@ allow_hyperlinks yes
 #: mouse cursor invisible on dual GPU machines. Changing this setting
 #: by reloading the config is not supported.
 
-linux_display_server auto
+linux_display_server x11
 
 #: Choose between Wayland and X11 backends. By default, an appropriate
 #: backend based on the system state is chosen automatically. Set it
@@ -1379,8 +1379,8 @@ map kitty_mod+f11    toggle_fullscreen
 #: Open the kitty shell in a new window/tab/overlay/os_window to
 #: control kitty using commands.
 
-map kitty_mod+a>m    set_background_opacity +0.1
-map kitty_mod+a>l    set_background_opacity -0.1
+map kitty_mod+m    set_background_opacity +0.05
+map kitty_mod+l    set_background_opacity -0.05
 # map kitty_mod+a>1    set_background_opacity 1
 # map kitty_mod+a>d    set_background_opacity default
 # map kitty_mod+delete clear_terminal reset active
@@ -1460,6 +1460,6 @@ map kitty_mod+a>l    set_background_opacity -0.1
 
 
 # BEGIN_KITTY_THEME
-# Rosé Pine Dawn
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME

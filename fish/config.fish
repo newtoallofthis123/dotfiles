@@ -13,9 +13,10 @@ alias bunx "~/.bun/bin/bunx"
 alias cat "batcat --style=plain --theme ansi"
 alias fd "fd-find"
 alias tp "trash-put"
-alias nn "nnn -deH"
+alias nn "nnn -ioeH"
 alias lg "lazygit"
 alias zl "zellij"
+alias td "todo.sh -t"
 
 alias n "nvim"
 alias nvm-lts "bass source ~/.nvm/nvm.sh --no-use ';' nvm use --lts"
@@ -68,8 +69,12 @@ set -gx PATH /home/noobscience/.applications/clion-2024.1.2/bin $PATH
 set -gx PATH /home/noobscience/.cargo/bin $PATH
 set -gx PATH /home/noobscience/.applications/bflat-8.0.2-linux-glibc-x64 $PATH
 set -gx PATH /home/noobscience/.bun/bin $PATH
+set -gx PATH /opt/nvim-linux64/bin $PATH
 
 zoxide init fish | source
 source ~/.asdf/asdf.fish
+
+nerdfetch 
+todo.sh lsp A-B
 
 # printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish" }}\x9c'

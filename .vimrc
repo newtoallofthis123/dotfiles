@@ -11,7 +11,7 @@ set encoding=UTF-8
 set wildmenu
 set incsearch
 set smartindent
-set guicursor=n-v-c:block-nCursor
+"set guicursor=n-v-c:block-nCursor
 set clipboard=unnamedplus
 set colorcolumn=80
 set belloff=all
@@ -33,6 +33,7 @@ map <leader>r :registers<CR>
 map <leader>b :buffers<CR>
 
 colorscheme rosepine
+colorscheme retrobox
 
 call plug#begin()
 Plug 'tpope/vim-fugitive'

@@ -36,9 +36,10 @@ exec swaync
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+# exec --no-startup-id flameshot
 # exec --no-startup-id volumeicon
 # exec --no-startup-id $HOME/.bin/greenclip daemon
-# exec --no-startup-id $HOME/contrib/swhkd/target/release/swhks && doas $HOME/contrib/swhkd/target/release/swhkd
+# exec --no-startup-id $HOME/contrib/swhkd/target/release/swhks && $HOME/contrib/swhkd/target/release/swhkd 2> ~/swhkd.log
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -53,12 +54,17 @@ bindsym XF86MonBrightnessDown exec --no-startup-id doas ~/.config/scripts/bright
 tiling_drag modifier 
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec wezterm
 
-bindsym $mod+b exec firefox
+bindsym $mod+b exec flatpak run io.github.zen_browser.zen
 bindsym $mod+e exec nautilus
 bindsym $mod+g exec flatpak run com.discordapp.Discord
 bindsym $mod+p exec pavucontrol
+bindsym $mod+Shift+period exec flatpak run com.github.finefindus.eyedropper 
+
+bindsym $mod+Shift+p exec grimshot copy anything
+bindsym $mod+Alt+p exec grimshot savecopy anything
+
 # kill focused window 
 bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
@@ -134,10 +140,10 @@ set $web "2: 󰈹 "
 set $ws3 "3:  "
 set $ws4 "4:  "
 set $ws5 "5:  "
-set $ws6 "6:  "
-set $ws7 "7:  "
-set $ws8 "8:  "
-set $ws9 "9"
+set $ws6 "6:  "
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9:  "
 set $ws10 "10"
 
 # switch to workspace
@@ -230,55 +236,68 @@ bindsym $mod+BackSpace mode "$mode_system"
 # }
 #
 
-set $rosewater #f5e0dc
-set $flamingo #f2cdcd
-set $pink #f5c2e7
-set $mauve #cba6f7
-set $red #f38ba8
-set $maroon #eba0ac
-set $peach #fab387
-set $yellow #f9e2af
-set $green #a6e3a1
-set $teal #94e2d5
-set $sky #89dceb
-set $sapphire #74c7ec
-set $blue #89b4fa
-set $lavender #b4befe
-set $text #cdd6f4
-set $subtext1 #bac2de
-set $subtext0 #a6adc8
-set $overlay2 #9399b2
-set $overlay1 #7f849c
-set $overlay0 #6c7086
-set $surface2 #585b70
-set $surface1 #45475a
-set $surface0 #313244
-set $base #1e1e2e
-set $mantle #181825
-set $crust #11111b
+# For Catppuccin Theme
+# set $rosewater #f5e0dc
+# set $flamingo #f2cdcd
+# set $pink #f5c2e7
+# set $mauve #cba6f7
+# set $red #f38ba8
+# set $maroon #eba0ac
+# set $peach #fab387
+# set $yellow #f9e2af
+# set $green #a6e3a1
+# set $teal #94e2d5
+# set $sky #89dceb
+# set $sapphire #74c7ec
+# set $blue #89b4fa
+# set $lavender #b4befe
+# set $text #cdd6f4
+# set $subtext1 #bac2de
+# set $subtext0 #a6adc8
+# set $overlay2 #9399b2
+# set $overlay1 #7f849c
+# set $overlay0 #6c7086
+# set $surface2 #585b70
+# set $surface1 #45475a
+# set $surface0 #313244
+# set $base #1e1e2e
+# set $mantle #181825
+# set $crust #11111b
+
+# For Gruvbox Theme
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+set $white #ebdbb2
 
 bar {
     font pango:Inconsolata 16
     position bottom
     # tray_output swaybar
-    status_command bumblebee-status -m \
-        spotify cpu memory sensors2 battery-upower brightness date time pulseout \
-        -p sensors2.chip="amdgpu-pci-0400" sensors2.showcpu="false" sensors2.showfan="false" root.path=/ time.format="%H:%M" date.format="%a, %b %d" \
-        memory.usedonly="true" weather.showcity="false" spotify.concise_controls="true" spotify.layout="spotify.song" playerctl.format="{{artist}}" playerctl.layout="playerctl.song,playerctl.pause" playerctl.hide="true" title.max="45" \
-        -t iceberg-rainbow
+    # status_command bumblebee-status -m \
+    #     spotify cpu memory sensors2 battery-upower brightness date time pulseout \
+    #     -p sensors2.chip="amdgpu-pci-0400" sensors2.showcpu="false" sensors2.showfan="false" root.path=/ time.format="%H:%M" date.format="%a, %b %d" \
+    #     memory.usedonly="true" weather.showcity="false" spotify.concise_controls="true" spotify.layout="spotify.song" playerctl.format="{{artist}}" playerctl.layout="playerctl.song,playerctl.pause" playerctl.hide="true" title.max="45" \
+    #     -t iceberg-rainbow
     swaybar_command waybar
     # i3bar_command i3bar
-      colors {
-        background         $base
-        statusline         $text
-        focused_statusline $text
-        focused_separator  $base
-        focused_workspace  $base $base $green
-        active_workspace   $base $base $blue
-        inactive_workspace $base $base $overlay1
-        urgent_workspace   $base $base $red
-        binding_mode       $base $base $red
-      }
+      # colors {
+      #   background         $base
+      #   statusline         $text
+      #   focused_statusline $text
+      #   focused_separator  $base
+      #   focused_workspace  $base $base $green
+      #   active_workspace   $base $base $blue
+      #   inactive_workspace $base $base $overlay1
+      #   urgent_workspace   $base $base $red
+      #   binding_mode       $base $base $red
+      # }
 }
 
 # My stuff
@@ -286,20 +305,29 @@ bar {
 smart_borders on
 # exec ~/init_docker.sh
 
+# For Rose Pine Theme
 # client.focused          #212121 #1e1e2e #ffffff #101010   #1e1e2e
 # client.focused_inactive #333333 #212121 #ffffff #484e50   #5f676a
 # client.unfocused        #333333 #212121 #888888 #292d2e   #222222
 # client.urgent           #2f343a #900000 #ffffff #900000   #900000
 # client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-#
 # client.background       #ffffff
 
-client.focused           $base $mauve $base  $base $mauve
-client.focused_inactive  $base $base $text  $base $base
-client.unfocused         $base $base $text  $base $base
-client.urgent            $peach    $base $peach $red  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+# For Gruvbox Theme
+# class                 border|backgr|text|indicator|child_border
+client.focused          $green $green $darkgray $purple $blue
+client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.urgent           $red $red $white $red $red
+client.background       $white
+
+# For Catppuccin Theme
+# client.focused           $base $mauve $base  $base $mauve
+# client.focused_inactive  $base $base $text  $base $base
+# client.unfocused         $base $base $text  $base $base
+# client.urgent            $peach    $base $peach $red  $peach
+# client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+# client.background        $base
 
 input "type:touchpad" {
     tap enabled         # enables click-on-tap
@@ -309,7 +337,8 @@ input "type:touchpad" {
     natural_scroll enabled
 }
 
-exec_always swaybg -i /home/noobscience/Pictures/walls/anime/a_cartoon_of_a_girl_standing_in_a_doorway.jpg
+# exec_always swaybg -i /home/noobscience/Pictures/walls/anime/a_cartoon_of_a_girl_standing_in_a_doorway.jpg
+exec_always swaybg -i /home/noobscience/Pictures/gruvbox-wallpapers/wallpapers/mix/titlwinzbst81.jpg
 # exec_always feh --bg-scale /home/noobscience/Pictures/rose-pine/moon.jpg
 # exec_always picom -f
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -324,6 +353,9 @@ bindsym XF86AudioPrev exec playerctl previous
 for_window [class="^.*"] border pixel 4
 for_window [title="\ -\ Sharing\ Indicator$"] floating enable, sticky enable
 for_window [title="Picture-in-Picture"] floating enable, sticky enable
+for_window [title="Eyedropper"] floating enable, sticky enable
+for_window [class="discord"] move to workspace $ws3  
+for_window [class="Spotify"] move to workspace $ws5
 
 bindsym $mod+Shift+S exec --no-startup-id screenkey -f "JetbrainsMono Nerd Font" -s small --opacity 0.7
 bindsym $mod+Ctrl+Shift+S exec --no-startup-id pkill screenkey
@@ -331,8 +363,19 @@ bindsym $mod+Ctrl+Shift+S exec --no-startup-id pkill screenkey
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
 smart_gaps on
-exec swayidle timeout 450 "swaylock -i /home/noobscience/Pictures/walls/anime/a_cartoon_of_a_girl_standing_in_a_doorway.jpg" before-sleep "swaylock -i /home/noobscience/Pictures/walls/anime/a_cartoon_of_a_girl_standing_in_a_doorway.jpg"
+exec swayidle timeout 450 "swaylock -i /home/noobscience/Pictures/gruvbox-wallpapers/wallpapers/mix/titlwinzbst81.jpg" before-sleep "swaylock -i /home/noobscience/Pictures/gruvbox-wallpapers/wallpapers/mix/titlwinzbst81.jpg"
 
-gaps outer 5
+gaps outer 10
 gaps inner 5
 exec swaymsg gaps inner all set 5
+exec swaymsg gaps outer all set 5
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Ctrl+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+Ctrl+minus scratchpad show
+
+bindsym $mod+Ctrl+l exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+bindsym $mod+Ctrl+d exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
