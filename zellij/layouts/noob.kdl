@@ -1,6 +1,22 @@
 layout {
-    pane size=1 borderless=true {
-        plugin location="compact-bar"
+    tab name="Code" focus=true {
+        pane size=1 borderless=true{
+            plugin location="compact-bar"
+        }
+        pane command="nvim" {
+        }
     }
-    pane
+    tab name="Exec" {
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
+        pane
+    }
+    tab name="Git" {
+        pane size=1 borderless=true {
+            plugin location="compact-bar"
+        }
+        pane command="lazygit"{
+        }
+    }
 }
