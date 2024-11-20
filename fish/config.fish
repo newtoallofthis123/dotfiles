@@ -8,6 +8,7 @@ end
 alias ls "exa --icons -l"
 alias la "exa --icons -la --git"
 alias ll "exa --icons -l --git"
+alias lt "exa --icons --tree --git"
 alias bun "~/.bun/bin/bun"
 alias bunx "~/.bun/bin/bunx"
 alias cat "batcat --style=plain --theme ansi"
@@ -17,6 +18,7 @@ alias nn "nnn -ioeH"
 alias lg "lazygit"
 alias zl "zellij"
 alias td "todo.sh -t"
+alias dt "date +%a\ %F\ %r"
 
 alias n "nvim"
 alias nvm-lts "bass source ~/.nvm/nvm.sh --no-use ';' nvm use --lts"
@@ -25,6 +27,15 @@ function nvm
 end
 
 set EDITOR nvim
+
+function y
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
 
 function tm
     set session_name (basename (pwd))
@@ -52,11 +63,14 @@ function zln
 
     if test -z "$session_exists"
         echo "Session '$session_name' does not exist. Creating a new session..."
-        zellij attach --create $session_name
+        zellij --layout noob attach --create $session_name
     else
         echo "Session '$session_name' already exists."
     end
 end
+
+alias zla "zellij --layout noob attach"
+alias zl "zellij --layout noob"
 
 function nz
     nvim $(fzf)
@@ -64,7 +78,8 @@ end
 
 set -gx PATH /home/noobscience/.bin $PATH
 set -gx PATH /home/noobscience/go/bin $PATH
-set -gx PATH /home/noobscience/.applications/zig-linux-x86_64-0.12.0 $PATH
+#set -gx PATH /home/noobscience/.applications/zig-linux-x86_64-0.12.0 $PATH
+set -gx PATH $HOME/.applications/zig-linux-x86_64-0.13.0 $PATH
 set -gx PATH /home/noobscience/.applications/clion-2024.1.2/bin $PATH
 set -gx PATH /home/noobscience/.cargo/bin $PATH
 set -gx PATH /home/noobscience/.applications/bflat-8.0.2-linux-glibc-x64 $PATH
@@ -74,7 +89,7 @@ set -gx PATH /opt/nvim-linux64/bin $PATH
 zoxide init fish | source
 source ~/.asdf/asdf.fish
 
-nerdfetch 
-todo.sh lsp A-B
+#nerdfetch 
+#todo.sh lsp A-B
 
 # printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish" }}\x9c'

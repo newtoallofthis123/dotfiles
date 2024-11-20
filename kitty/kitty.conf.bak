@@ -6,7 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family     GeistMono Nerd Font 
+font_family     JetbrainsMono Nerd Font 
 # font_family    CommitMono 
 # bold_font        auto
 # italic_font      auto
@@ -865,7 +865,7 @@ background_tint 0.8
 
 #: Advanced {{{
 
-shell /usr/bin/zsh --login 
+shell /usr/bin/fish --login 
 
 #: The shell program to execute. The default value of . means to use
 #: whatever shell is set as the default shell for the current user.
@@ -1063,7 +1063,7 @@ allow_hyperlinks yes
 #: mouse cursor invisible on dual GPU machines. Changing this setting
 #: by reloading the config is not supported.
 
-linux_display_server x11
+linux_display_server auto
 
 #: Choose between Wayland and X11 backends. By default, an appropriate
 #: backend based on the system state is chosen automatically. Set it
@@ -1460,6 +1460,6 @@ map kitty_mod+l    set_background_opacity -0.05
 
 
 # BEGIN_KITTY_THEME
-# Gruvbox Material Dark Hard
+# Rosé Pine Dawn
 include current-theme.conf
 # END_KITTY_THEME

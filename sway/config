@@ -36,7 +36,7 @@ exec swaync
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-# exec --no-startup-id flameshot
+exec --no-startup-id flameshot
 # exec --no-startup-id volumeicon
 # exec --no-startup-id $HOME/.bin/greenclip daemon
 # exec --no-startup-id $HOME/contrib/swhkd/target/release/swhks && $HOME/contrib/swhkd/target/release/swhkd 2> ~/swhkd.log
@@ -56,7 +56,7 @@ tiling_drag modifier
 # start a terminal
 bindsym $mod+Return exec wezterm
 
-bindsym $mod+b exec flatpak run io.github.zen_browser.zen
+bindsym $mod+b exec ~/.bin/zen
 bindsym $mod+e exec nautilus
 bindsym $mod+g exec flatpak run com.discordapp.Discord
 bindsym $mod+p exec pavucontrol
@@ -137,10 +137,10 @@ bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
 # We use variables to avoid repeating the names in multiple places.
 set $terms "1:  "
 set $web "2: 󰈹 "
-set $ws3 "3:  "
+set $ws3 "3: " "
 set $ws4 "4:  "
 set $ws5 "5:  "
-set $ws6 "6:  "
+set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9:  "
@@ -338,7 +338,8 @@ input "type:touchpad" {
 }
 
 # exec_always swaybg -i /home/noobscience/Pictures/walls/anime/a_cartoon_of_a_girl_standing_in_a_doorway.jpg
-exec_always swaybg -i /home/noobscience/Pictures/gruvbox-wallpapers/wallpapers/mix/titlwinzbst81.jpg
+# exec_always swaybg -i /home/noobscience/Pictures/gruvbox-wallpapers/wallpapers/mix/titlwinzbst81.jpg
+exec_always swaybg -i ~/.config/sway/bg.png
 # exec_always feh --bg-scale /home/noobscience/Pictures/rose-pine/moon.jpg
 # exec_always picom -f
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -354,7 +355,8 @@ for_window [class="^.*"] border pixel 4
 for_window [title="\ -\ Sharing\ Indicator$"] floating enable, sticky enable
 for_window [title="Picture-in-Picture"] floating enable, sticky enable
 for_window [title="Eyedropper"] floating enable, sticky enable
-for_window [class="discord"] move to workspace $ws3  
+for_window [class="discord"] move to workspace $ws6 
+for_window [class="obsidian"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws5
 
 bindsym $mod+Shift+S exec --no-startup-id screenkey -f "JetbrainsMono Nerd Font" -s small --opacity 0.7
@@ -363,7 +365,7 @@ bindsym $mod+Ctrl+Shift+S exec --no-startup-id pkill screenkey
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
 smart_gaps on
-exec swayidle timeout 450 "swaylock -i /home/noobscience/Pictures/gruvbox-wallpapers/wallpapers/mix/titlwinzbst81.jpg" before-sleep "swaylock -i /home/noobscience/Pictures/gruvbox-wallpapers/wallpapers/mix/titlwinzbst81.jpg"
+exec swayidle timeout 450 "swaylock -i ~/.config/sway/bg.png" before-sleep "swaylock -i ~/.config/sway/bg.png"
 
 gaps outer 10
 gaps inner 5

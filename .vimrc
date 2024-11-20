@@ -32,7 +32,7 @@ map <leader>yy "+yy
 map <leader>r :registers<CR>
 map <leader>b :buffers<CR>
 
-colorscheme rosepine
+"colorscheme rosepine
 colorscheme retrobox
 
 call plug#begin()
