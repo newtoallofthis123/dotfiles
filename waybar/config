@@ -111,12 +111,12 @@
         "format": "{icon} {} ",
         "return-type": "json",
         //"format-icons": {
-          //  "spotify": " ",
+           // "spotify": " ",
             //"default": "🎜"
         //},
         "escape": true,
         "on-click": "playerctl play-pause --player spotify",
-        //"exec": "$HOME/.config/scripts/mediaplayer.py" 
+        //"exec": "$HOME/.config/scripts/mediaplayer.py  --player spotify" 
         "exec": "$HOME/.config/scripts/mediaplayer.py --player spotify" // Filter player based on name
     },
     "mpd": {

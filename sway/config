@@ -39,6 +39,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id flameshot
 # exec --no-startup-id volumeicon
 # exec --no-startup-id $HOME/.bin/greenclip daemon
+# exec --no-startup-id $HOME/.bin/swhks && $HOME/.bin/swhkd -d 2> ~/swhkd.log
 # exec --no-startup-id $HOME/contrib/swhkd/target/release/swhks && $HOME/contrib/swhkd/target/release/swhkd 2> ~/swhkd.log
 
 # Use pactl to adjust volume in PulseAudio.
@@ -57,6 +58,7 @@ tiling_drag modifier
 bindsym $mod+Return exec wezterm
 
 bindsym $mod+b exec ~/.bin/zen
+bindsym $mod+c exec ~/.local/bin/zed
 bindsym $mod+e exec nautilus
 bindsym $mod+g exec flatpak run com.discordapp.Discord
 bindsym $mod+p exec pavucontrol

@@ -331,6 +331,20 @@ themes {
         white 251 241 199
         orange 214 93 14
     }
+
+    github-light {
+        bg "#ffffff"
+        fg "#24292e"
+        red "#cf222e"
+        green "#0969da"
+        blue "#0969da"
+        yellow "#f4c542"
+        orange "#f0883e"
+        magenta "#8257e5"
+        cyan "#1b7c83"
+        black "#ffffff"
+        white "#000000"
+    }
 }
 
 // Choose the theme that is specified in the themes section.

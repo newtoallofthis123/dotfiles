@@ -85,10 +85,12 @@ set -gx PATH /home/noobscience/.cargo/bin $PATH
 set -gx PATH /home/noobscience/.applications/bflat-8.0.2-linux-glibc-x64 $PATH
 set -gx PATH /home/noobscience/.bun/bin $PATH
 set -gx PATH /opt/nvim-linux64/bin $PATH
+set -gx PATH ~/.local/bin $PATH
 
 zoxide init fish | source
 source ~/.asdf/asdf.fish
 
+pokemon-go-colorscripts -r --no-title
 #nerdfetch 
 #todo.sh lsp A-B
 
