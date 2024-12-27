@@ -11,7 +11,7 @@ set encoding=UTF-8
 set wildmenu
 set incsearch
 set smartindent
-"set guicursor=n-v-c:block-nCursor
+set guicursor=n-v-c:block-nCursor
 set clipboard=unnamedplus
 set colorcolumn=80
 set belloff=all
@@ -32,8 +32,7 @@ map <leader>yy "+yy
 map <leader>r :registers<CR>
 map <leader>b :buffers<CR>
 
-"colorscheme rosepine
-colorscheme retrobox
+" colorscheme retrobox
 
 call plug#begin()
 Plug 'tpope/vim-fugitive'
@@ -42,7 +41,10 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'rose-pine/vim', {'as': 'rosepine' }
 call plug#end()
+
+colorscheme rosepine
 
 let g:highlightedyank_highlight_duration = 200
 

@@ -57,9 +57,9 @@ tiling_drag modifier
 # start a terminal
 bindsym $mod+Return exec wezterm
 
-bindsym $mod+b exec ~/.bin/zen
+bindsym $mod+b exec ~/.local/share/AppImage/ZenBrowser.AppImage
 bindsym $mod+c exec ~/.local/bin/zed
-bindsym $mod+e exec nautilus
+bindsym $mod+e exec dolphin
 bindsym $mod+g exec flatpak run com.discordapp.Discord
 bindsym $mod+p exec pavucontrol
 bindsym $mod+Shift+period exec flatpak run com.github.finefindus.eyedropper 

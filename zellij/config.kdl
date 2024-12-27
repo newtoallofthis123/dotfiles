@@ -306,16 +306,16 @@ themes {
 		white "#e0def4"
 	}
     monokai-pro {
-        bg "#2C292D"
+        bg "#0B0B0B"
         fg "#F1F1EF"
         red "#FF6188"
-        green "#A9DC76"
+        green "#FFD866"
         blue "#78DCE8"
         yellow "#FFD866"
         orange "#FC9867"
         magenta "#AB9DF2"
         cyan "#78DCE8"
-        black "#1a1a1a"
+        black "#0B0B0B"
         white "#F1F1EF"
     }
     gruvbox-dark-custom {
@@ -350,7 +350,7 @@ themes {
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "gruvbox-dark-custom"
+theme "monokai-pro"
 
 // The name of the default layout to load on startup
 // Default: "default"

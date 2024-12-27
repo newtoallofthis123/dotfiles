@@ -1460,6 +1460,6 @@ map kitty_mod+l    set_background_opacity -0.05
 
 
 # BEGIN_KITTY_THEME
-# Rosé Pine
+# Gruvbox Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
