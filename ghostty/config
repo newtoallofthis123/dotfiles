@@ -9,6 +9,7 @@ window-theme = ghostty
 adw-toolbar-style = raised-border
 background = "#000000"
 foreground = "#f8f8f2"
+unfocused-split-fill = "#0d0d0d"
 background-blur-radius = 20
 
 theme = "Monokai Remastered"

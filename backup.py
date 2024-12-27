@@ -51,6 +51,10 @@ try:
 except:
     print("Failed at", "tmux")
 try:
+    os.system("cp ~/.wezterm.lua .wezterm.lua")
+except:
+    print("Failed at", "wezterm")
+try:
     os.system("cp ~/.vimrc .vimrc")
 except:
     print("Failed at", "vimrc")
