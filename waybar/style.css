@@ -1,7 +1,7 @@
 * {
 	border: none;
 	border-radius: 0;
-	font-family: "JetbrainsMono Nerd Font";
+	font-family: "Hurmit Nerd Font";
 	font-size: 16px;
 	min-height: 0;
 	margin: 0px;
@@ -41,9 +41,11 @@ window#waybar {
 }
 
 #workspaces button.focused {
-	background: #e88939;
+	/* background: #e88939; */
+	background: #0042c6;
 	/* background: #00afd7; */
-	color: #1b1d1e;
+	/* color: #1b1d1e; */
+	color: #f0f0f0;
 }
 
 #workspaces button.urgent {

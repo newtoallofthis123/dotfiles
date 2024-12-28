@@ -27,7 +27,7 @@ function cat
     # if it is a binary file, use xxd
     else if file --mime $argv | grep -q "application"
         xxd $argv
-    else if file --mime $argv | grep "PNG"
+    else if file --mime $argv | grep "png"
         wezterm imgcat $argv
     # if it is a directory, use exa
     else if test -d $argv
@@ -108,6 +108,15 @@ function nz
         cd $dir
     else
         echo "No file selected"
+    end
+end
+
+function tz
+    set session $(tmux list-sessions | cut -d ':' -f 1 | fzf)
+    if test -n "$session"
+        tmux attach-session -t $session
+    else
+        echo "No session selected"
     end
 end
 

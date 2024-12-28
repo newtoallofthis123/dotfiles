@@ -13,6 +13,11 @@ config.window_background_opacity = 1
 config.scrollback_lines = 3500
 config.use_fancy_tab_bar = false
 
+config.adjust_window_size_when_changing_font_size = false
+config.command_palette_font_size = 18.0
+config.command_palette_bg_color = '#000000'
+config.default_cursor_style = 'SteadyBar'
+
 config.keys = {
     {
         key = 'l',
@@ -70,6 +75,26 @@ config.keys = {
         key = 'DownArrow',
         mods = 'ALT',
         action = act.ActivatePaneDirection 'Down',
+    },
+    {
+        key = 'LeftArrow',
+        mods = 'CTRL|SHIFT',
+        action = act.AdjustPaneSize { 'Left', 5 },
+    },
+    {
+        key = 'RightArrow',
+        mods = 'CTRL|SHIFT',
+        action = act.AdjustPaneSize { 'Right', 5 },
+    },
+    {
+        key = 'UpArrow',
+        mods = 'CTRL|SHIFT',
+        action = act.AdjustPaneSize { 'Up', 5 },
+    },
+    {
+        key = 'DownArrow',
+        mods = 'CTRL|SHIFT',
+        action = act.AdjustPaneSize { 'Down', 5 },
     },
     {
         key = 'o',
@@ -144,7 +169,7 @@ config.colors = {
 }
 
 config.inactive_pane_hsb = {
-    saturation = 0.9,
+    saturation = 1,
     brightness = 0.9,
 }
 
