@@ -100,7 +100,11 @@ function nz
     # get first argument
     # if it is a directory, cd into it
     set -l dir $argv[1]
-    z $dir
+    # check if it is empty
+    if test -z "$dir"
+    else
+        z $dir
+    end
     set file $(fzf)
     if test -n "$file"
         nvim $file

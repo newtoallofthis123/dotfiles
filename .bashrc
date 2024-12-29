@@ -122,3 +122,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 alias nodejs="node"
 export PATH="/home/noobscience/.nvm/versions/node/v23.3.0/bin:$PATH"
+
+# Following line was automatically added by arttime installer
+export MANPATH=/home/noobscience/.local/share/man:$MANPATH

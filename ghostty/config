@@ -4,13 +4,14 @@ keybind = ctrl+d=new_split:right
 font-family = "Hurmit Nerd Font"
 font-size = 16
 
-background-opacity = 0.98
+background-opacity = 0.85
 window-theme = ghostty
 adw-toolbar-style = raised-border
 background = "#000000"
 foreground = "#f8f8f2"
 unfocused-split-fill = "#0d0d0d"
 background-blur-radius = 20
+window-decoration = false
 
 theme = "Monokai Remastered"
 

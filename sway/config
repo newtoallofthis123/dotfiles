@@ -56,7 +56,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id doas ~/.config/scripts/bright
 tiling_drag modifier 
 
 # start a terminal
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec ghostty
 
 bindsym $mod+b exec ~/.local/share/AppImage/ZenBrowser.AppImage
 bindsym $mod+e exec dolphin
@@ -275,9 +275,9 @@ smart_borders on
 
 # For Gruvbox Theme
 # class                 border|backgr|text|indicator|child_border
-client.focused          $green $green $darkgray $purple $purple
-client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.focused          $cyan $cyan $darkgray $purple $purple
+client.focused_inactive $darkgray $darkgray $white $purple $darkgray
+client.unfocused        $darkgray $darkgray $white $purple $darkgray
 client.urgent           $red $red $white $red $red
 client.background       $white
 
