@@ -1,0 +1,15 @@
+themes {
+    monokai-pro {
+        bg "#000000"
+        fg "#F1F1EF"
+        red "#FF6188"
+        green "#FFD866"
+        blue "#78DCE8"
+        yellow "#FFD866"
+        orange "#FC9867"
+        magenta "#AB9DF2"
+        cyan "#78DCE8"
+        black "#0B0B0B"
+        white "#F1F1EF"
+    }
+}

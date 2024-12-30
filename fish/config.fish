@@ -5,7 +5,7 @@ if status is-interactive
     # /home/noobscience/.bin/nerdfetch
 end
 
-alias ls "exa --icons -l"
+alias ls "exa --icons"
 alias la "exa --icons -la --git"
 alias ll "exa --icons -l --git"
 alias lt "exa --icons --tree --git"

@@ -111,7 +111,7 @@
         "format": "  Active Media ",
         "escape": true,
         "on-click": "playerctl play-pause --player firefox",
-        "exec": "playerctl metadata -F --format '{{title}}' -p firefox",
+        "exec": "playerctl metadata -F --format '{{title}} {{artist}}' -p firefox",
         "tooltip-format": "{}"
     },
     "mpd": {

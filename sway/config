@@ -38,7 +38,7 @@ exec swaync
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 exec --no-startup-id copyq
-exec_always ~/.bin/swaywsr --icons awesome
+# exec_always ~/.bin/swaywsr --icons awesome
 # exec --no-startup-id $HOME/.bin/greenclip daemon
 # exec --no-startup-id $HOME/.bin/swhks && $HOME/.bin/swhkd -d 2> ~/swhkd.log
 # exec --no-startup-id $HOME/contrib/swhkd/target/release/swhks && $HOME/contrib/swhkd/target/release/swhkd 2> ~/swhkd.log
@@ -139,7 +139,7 @@ bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
 # We use variables to avoid repeating the names in multiple places.
 set $terms "1:  "
 set $web "2: 󰈹 "
-set $ws3 "3: " "
+set $ws3 "3:  " "
 set $ws4 "4:  "
 set $ws5 "5:  "
 set $ws6 "6"
@@ -149,16 +149,16 @@ set $ws9 "9:  "
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2 
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
+bindsym $mod+1 workspace number $terms
+bindsym $mod+2 workspace number $web
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws0
 
 # assign [class="firefox" instance="Navigator"] → $web
 
@@ -316,7 +316,6 @@ for_window [title="\ -\ Sharing\ Indicator$"] floating enable, sticky enable
 for_window [title="Picture-in-Picture"] floating enable, sticky enable
 for_window [title="Eyedropper"] floating enable, sticky enable
 for_window [class="discord"] move to workspace $ws6 
-for_window [class="obsidian"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws5
 
 bindsym $mod+Shift+S exec --no-startup-id screenkey -f "JetbrainsMono Nerd Font" -s small --opacity 0.7
