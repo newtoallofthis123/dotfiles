@@ -7,7 +7,7 @@
 	// Choose the order of the modules
 	"modules-left": ["custom/launcher", "sway/workspaces", "sway/mode"],
 	// "modules-center": ["sway/window"],
-	"modules-right": ["custom/media", "temperature", "cpu", "memory", "network", "backlight", "pulseaudio", "battery", "clock", "tray", "custom/notification" , "custom/power"],
+	"modules-right": ["custom/media", "temperature", "cpu", "memory", "network", "backlight", "idle_inhibitor", "pulseaudio", "battery", "clock", "tray", "custom/notification" , "custom/power"],
 
 	"sway/mode": {
 		"format": "{}"
@@ -98,8 +98,8 @@
 	"idle_inhibitor": {
 		"format": "<span color='#589df6'>{icon}</span>",
 		"format-icons": {
-			"activated": "",
-			"deactivated": ""
+			"activated": " ",
+			"deactivated": " "
 		},
 		"on-click-right": "swaylock -eFfki ~/.config/lockscreen-origin.png"
 	},
@@ -110,8 +110,8 @@
     "custom/media": {
         "format": "  Active Media ",
         "escape": true,
-        "on-click": "playerctl play-pause --player firefox",
-        "exec": "playerctl metadata -F --format '{{title}} {{artist}}' -p firefox",
+        "on-click": "playerctl play-pause",
+        "exec": "playerctl metadata -F --format '{{title}} {{artist}}'",
         "tooltip-format": "{}"
     },
     "mpd": {

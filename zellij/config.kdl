@@ -3,6 +3,11 @@ keybinds {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
+        bind "Ctrl 1" { GoToTab 1; }
+        bind "Ctrl 2" { GoToTab 2; }
+        bind "Ctrl 3" { GoToTab 3; }
+        bind "Ctrl 4" { GoToTab 4; }
+        bind "Ctrl 5" { GoToTab 5; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }

@@ -4,16 +4,19 @@ keybind = ctrl+d=new_split:right
 font-family = "Hurmit Nerd Font"
 font-size = 16
 
-background-opacity = 0.85
+background-opacity = 0.8
+# background-opacity = 1
 window-theme = ghostty
-adw-toolbar-style = raised-border
-background = "#000000"
+gtk-tabs-location = bottom
+gtk-wide-tabs = false
+adw-toolbar-style = flat
+background = "#0f0b06"
 foreground = "#f8f8f2"
 unfocused-split-fill = "#0d0d0d"
 background-blur-radius = 20
 window-decoration = false
 
-theme = "Monokai Remastered"
+theme = "GruvboxDark"
 
 shell-integration = "fish"
 
@@ -44,7 +47,7 @@ keybind = ctrl+alt+down=resize_split:down,10
 # Remove Ctrl+D for split cause nvim!?
 keybind = ctrl+d=unbind
 
-keybind = ctrl+a=select_all
+keybind = ctrl+shift+a=select_all
 keybind = ctrl+shift+d=scroll_page_up
 keybind = ctrl+shift+u=scroll_page_down
 

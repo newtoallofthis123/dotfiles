@@ -9,7 +9,7 @@
 
 window#waybar {
 	/*background: #000000;*/
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.9);
 	color: gray;
 	color: #ffffff;
 }
@@ -41,11 +41,11 @@ window#waybar {
 }
 
 #workspaces button.focused {
-	/* background: #e88939; */
-	background: #0042c6;
+	background: #e88939;
+	/* background: #0042c6; */
 	/* background: #00afd7; */
-	/* color: #1b1d1e; */
-	color: #f0f0f0;
+	color: #1b1d1e;
+	/* color: #f0f0f0; */
 }
 
 #workspaces button.urgent {

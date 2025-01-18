@@ -5,11 +5,11 @@ local act = wezterm.action
 config.font = wezterm.font 'Hurmit Nerd Font'
 config.font_size = 16.0
 
-config.color_scheme = 'Monokai Remastered'
+config.color_scheme = 'GruvboxDark'
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.default_prog = { 'fish' }
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.65
 config.scrollback_lines = 3500
 config.use_fancy_tab_bar = false
 
@@ -147,7 +147,7 @@ config.colors = {
     split = '#444444',
 
     tab_bar = {
-        background = '#1a1a1a',
+        background = '#000000',
 
         active_tab = {
             bg_color = '#000000',

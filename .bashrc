@@ -125,3 +125,6 @@ export PATH="/home/noobscience/.nvm/versions/node/v23.3.0/bin:$PATH"
 
 # Following line was automatically added by arttime installer
 export MANPATH=/home/noobscience/.local/share/man:$MANPATH
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export EDITOR=/opt/nvim-linux64/bin/nvim
