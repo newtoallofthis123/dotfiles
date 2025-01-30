@@ -8,6 +8,7 @@ background-opacity = 0.8
 # background-opacity = 1
 window-theme = ghostty
 gtk-tabs-location = bottom
+gtk-tabs-location = top
 gtk-wide-tabs = false
 adw-toolbar-style = flat
 background = "#0f0b06"
@@ -17,6 +18,7 @@ background-blur-radius = 20
 window-decoration = false
 
 theme = "GruvboxDark"
+# theme = "Apple System Colors Light"
 
 shell-integration = "fish"
 

@@ -29,9 +29,6 @@ function cat
     # if file extension ends with .md or .mdx, use glow
     if string match -q "*.md" $argv
         glow $argv
-    # if it is a binary file, use xxd
-    else if file --mime $argv | grep -q "application"
-        xxd $argv
     else if file --mime $argv | grep "png" || file --mime $argv | grep 'jpeg'
         kitty icat $argv
     # if it is a directory, use exa

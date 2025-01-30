@@ -7,6 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "show_inline_completions": false,
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "o1"
+    },
+    "version": "2"
+  },
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true,
@@ -15,14 +23,14 @@
     "use_multiline_find": true
   },
   "ui_font_size": 22,
-  "ui_font_family": "FiraCode Nerd Font",
-  "buffer_font_size": 20,
-  "buffer_font_family": "FiraCode Nerd Font",
+  "ui_font_family": "Hurmit Nerd Font",
+  "buffer_font_size": 20.0,
+  "buffer_font_family": "Hurmit Nerd Font",
   "ui_font_weight": 500,
   "theme": {
     "mode": "dark",
     "light": "Rosé Pine Dawn",
-    "dark": "Gruvbox Dark Hard"
+    "dark": "Zedokai Darker (Filter Ristretto)"
   },
   "terminal": {
     "shell": {

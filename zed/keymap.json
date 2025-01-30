@@ -8,22 +8,20 @@
 [
   // Some common shortcuts for a VsCode like experience
   {
-    "context": "Editor && !menu",
+    "context": "Editor",
     "bindings": {
-      "ctrl-c": "editor::Copy", // vim default: return to normal mode
-      "ctrl-x": "editor::Cut", // vim default: decrement
-      "ctrl-v": "editor::Paste", // vim default: visual block mode
-      "ctrl-y": "editor::Undo", // vim default: line up
-      "ctrl-f": "buffer_search::Deploy", // vim default: page down
-      "ctrl-o": "workspace::Open", // vim default: go back
-      "ctrl-a": "editor::SelectAll", // vim default: increment
-      "ctrl-w": "pane::CloseActiveItem" // vim default: close tab
+      "ctrl-y": "editor::ConfirmCompletion",
+      "ctrl-w": "pane::CloseActiveItem",
+      "ctrl-shift-v": "editor::Paste",
+      "ctrl-v": "editor::Paste"
     }
   },
   {
     "context": "VimControl && !menu",
     "bindings": {
       "space e": "file_finder::Toggle",
+      "space s": "buffer_search::Deploy",
+      "space d": "pane::CloseActiveItem",
       "space o": "outline::Toggle",
       "space t": "workspace::ToggleLeftDock",
       "space w": "project_panel::ToggleFocus"
