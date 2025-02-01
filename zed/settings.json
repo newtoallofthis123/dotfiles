@@ -7,11 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "show_inline_completions": false,
+  "project_panel": {
+    "dock": "right"
+  },
+  "show_inline_completions": true,
   "assistant": {
+    "dock": "left",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "o1"
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
     },
     "version": "2"
   },
@@ -22,21 +26,21 @@
     "use_smartcase_find": true,
     "use_multiline_find": true
   },
-  "ui_font_size": 22,
-  "ui_font_family": "Hurmit Nerd Font",
+  "ui_font_size": 20,
+  "ui_font_family": "Inter 18pt",
   "buffer_font_size": 20.0,
   "buffer_font_family": "Hurmit Nerd Font",
-  "ui_font_weight": 500,
+  // "ui_font_weight": 500,
   "theme": {
-    "mode": "dark",
-    "light": "Rosé Pine Dawn",
-    "dark": "Zedokai Darker (Filter Ristretto)"
+    "mode": "system",
+    "light": "Github Light",
+    "dark": "Zedokai Darker (Filter Spectrum)"
   },
   "terminal": {
     "shell": {
       "program": "fish"
     },
-    "font_family": "FiraCode Nerd Font"
+    "font_family": "Hurmit Nerd Font"
   },
   "base_keymap": "VSCode",
   "load_direnv": "shell_hook",
@@ -58,6 +62,28 @@
     "PHP": {
       "ensure_final_newline_on_save": false,
       "format_on_save": "language_server"
+    },
+    "Python": {
+      "language_servers": ["ruff", "pyright"]
+    },
+    "Proto": {
+      "language_servers": ["/home/noobscience/go/bin/protobuf-language-server"],
+      "formatter": {
+        "external": {
+          "command": "/home/noobscience/.local/share/nvim/mason/bin/clang-format",
+          "arguments": ["{buffer_path}"]
+        }
+      }
+    }
+  },
+  "lsp": {
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "openFilesOnly",
+          "typeCheckingMode": "off"
+        }
+      }
     }
   }
 }

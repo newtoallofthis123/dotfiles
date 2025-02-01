@@ -6,26 +6,41 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  // Some common shortcuts for a VsCode like experience
   {
     "context": "Editor",
     "bindings": {
       "ctrl-y": "editor::ConfirmCompletion",
-      "ctrl-w": "pane::CloseActiveItem",
+      "ctrl-w ctrl-w": "pane::CloseActiveItem",
       "ctrl-shift-v": "editor::Paste",
-      "ctrl-v": "editor::Paste"
+      "ctrl-v": "editor::Paste",
+      "ctrl-0": "projects::OpenRecent"
     }
   },
   {
     "context": "VimControl && !menu",
     "bindings": {
       "space e": "file_finder::Toggle",
+      "ctrl-e": "file_finder::Toggle",
       "space s": "buffer_search::Deploy",
       "space d": "pane::CloseActiveItem",
+      "space f": "editor::Format",
+      "space f s": "pane::DeploySearch",
       "space o": "outline::Toggle",
-      "space t": "workspace::ToggleLeftDock",
-      "space w": "project_panel::ToggleFocus"
+      "space f o": "project_symbols::Toggle",
+      "space t": "workspace::ToggleRightDock",
+      "space w": "project_panel::ToggleFocus",
+      "space a": "assistant::ToggleFocus",
+      "ctrl-w z": "workspace::ToggleZoom",
+      "ctrl-w t": "terminal_panel::ToggleFocus",
+      "ctrl-w Left": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w Right": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w Up": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w Down": ["workspace::ActivatePaneInDirection", "Down"]
     }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {}
   },
   {
     "context": "VimControl && Editor",
@@ -37,7 +52,7 @@
   {
     "context": "ProjectPanel",
     "bindings": {
-      "space t": "workspace::ToggleLeftDock",
+      "space t": "workspace::ToggleRightDock",
       "space w": "project_panel::ToggleFocus"
     }
   },

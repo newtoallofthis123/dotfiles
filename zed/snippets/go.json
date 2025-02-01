@@ -1,0 +1,27 @@
+{
+  "Slogger Info Log": {
+    "prefix": "logi",
+    "body": ["$1.logger.Info(fmt.Sprintf(\"$0\", ))"],
+    "description": "Log to Slogger Info Level"
+  },
+  "Slogger Error Log": {
+    "prefix": "loge",
+    "body": ["$1.logger.Error(fmt.Sprintf(\"$0\", ))"],
+    "description": "Log to Slogger Error Level"
+  },
+  "Fmt Print": {
+    "prefix": "fp",
+    "body": ["fmt.Println(\"$0\")"],
+    "description": "Default fmt print"
+  },
+  "Fmt SPrintf": {
+    "prefix": "sp",
+    "body": ["fmt.Sprintf(\"$0\", )"],
+    "description": "Default fmt Sprint"
+  },
+  "New Function": {
+    "prefix": "fc",
+    "body": ["func $0 {\n}"],
+    "description": "New Function"
+  }
+}
