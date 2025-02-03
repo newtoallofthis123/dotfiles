@@ -28,13 +28,13 @@
   },
   "ui_font_size": 20,
   "ui_font_family": "Inter 18pt",
-  "buffer_font_size": 20.0,
-  "buffer_font_family": "Hurmit Nerd Font",
+  "buffer_font_size": 21.0,
+  "buffer_font_family": "GeistMono Nerd Font",
   // "ui_font_weight": 500,
   "theme": {
     "mode": "system",
     "light": "Github Light",
-    "dark": "Zedokai Darker (Filter Spectrum)"
+    "dark": "Zedokai Darker (Filter Ristretto)"
   },
   "terminal": {
     "shell": {
@@ -73,7 +73,8 @@
           "command": "/home/noobscience/.local/share/nvim/mason/bin/clang-format",
           "arguments": ["{buffer_path}"]
         }
-      }
+      },
+      "format_on_save": "off"
     }
   },
   "lsp": {

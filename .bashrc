@@ -117,14 +117,7 @@ if ! shopt -oq posix; then
 fi
 . "$HOME/.cargo/env"
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-alias nodejs="node"
-export PATH="/home/noobscience/.nvm/versions/node/v23.3.0/bin:$PATH"
-
-# Following line was automatically added by arttime installer
-export MANPATH=/home/noobscience/.local/share/man:$MANPATH
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export EDITOR=/opt/nvim-linux64/bin/nvim

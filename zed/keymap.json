@@ -35,7 +35,8 @@
       "ctrl-w Left": ["workspace::ActivatePaneInDirection", "Left"],
       "ctrl-w Right": ["workspace::ActivatePaneInDirection", "Right"],
       "ctrl-w Up": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-w Down": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-w Down": ["workspace::ActivatePaneInDirection", "Down"],
+      "space g l": ["task::Spawn", { "task_name": "Open Lazy Git" }]
     }
   },
   {

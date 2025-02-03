@@ -7,7 +7,7 @@
 	// Choose the order of the modules
 	"modules-left": ["custom/launcher", "sway/workspaces", "sway/mode"],
 	// "modules-center": ["sway/window"],
-	"modules-right": ["custom/media", "temperature", "cpu", "memory", "network", "backlight", "idle_inhibitor", "pulseaudio", "battery", "clock", "tray", "custom/notification" , "custom/power"],
+	"modules-right": ["custom/media", "temperature", "cpu", "memory", "network", "backlight", "idle_inhibitor", "pulseaudio", "battery", "custom/clock", "tray", "custom/notification" , "custom/power"],
 
 	"sway/mode": {
 		"format": "{}"
@@ -73,11 +73,13 @@
 		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol"
 	},
-	"clock": {
+	"custom/clock": {
 		"interval": 1,
-		"format": "⏰ {:%H:%M:%S}",
-		"tooltip-format": "{:%Y-%m-%d | %H:%M:%S}",
-        "on-click": "gnome-calendar"
+        "return-type": "json",
+		"exec": "$HOME/.config/scripts/time.sh",
+        "format": "⏰ {}",
+		"tooltip-format": "{}",
+        "on-click": "gnome-calendar",
 	},
 	"battery": {
 		"states": {

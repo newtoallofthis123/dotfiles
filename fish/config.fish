@@ -4,7 +4,7 @@ if status is-interactive
 
     # /home/noobscience/.bin/nerdfetch
     #echo -e "\e[0m$(echo -e "\e[33mNoob is cool\e[0m" | cowsay -f apt)\e[0m"
-    colorscript random
+    #colorscript random
     set -g fish_greeting ""
 end
 
@@ -183,17 +183,18 @@ set -gx PATH /home/noobscience/.applications/clion-2024.1.2/bin $PATH
 set -gx PATH /home/noobscience/.applications/zen $PATH
 set -gx PATH /home/noobscience/.cargo/bin $PATH
 set -gx PATH /home/noobscience/.applications/bflat-8.0.2-linux-glibc-x64 $PATH
-set -gx PATH /home/noobscience/.nvm/versions/node/v23.3.0/bin $PATH
+set -gx PATH /home/noobscience/.nvm/versions/node/v23.7.0/bin $PATH
 set -gx PATH /home/noobscience/.bun/bin $PATH
-set -gx PATH /opt/nvim-linux64/bin $PATH
+set -gx PATH /opt/nvim-linux-x86_64/bin $PATH
 set -gx PATH /opt/gradle/gradle-8.11.1/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.local/share/gem/ruby/3.3.0/bin $PATH
+set -gx PATH /usr/local/go/bin $PATH
 
-set -l gem_home (ruby -e 'puts Gem.user_dir')
-set -l path $gem_home/bin $PATH
+#set -l gem_home (ruby -e 'puts Gem.user_dir')
+#set -l path $gem_home/bin $PATH
 
-set GEM_HOME (ruby -e 'puts Gem.user_dir')
+#set GEM_HOME (ruby -e 'puts Gem.user_dir')
 
 source "$HOME/.cargo/env.fish"
 
